@@ -1,38 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUP : MonoBehaviour
 {
     public float pickUpRange = 1;
     public float launchForce = 250;
     public Transform container;
-    float distance;
+    //float distance;
     GameObject heldObj;
+    public Text interactUI;
 
     private void Update()
     {
-        distance = Vector3.Distance(heldObj.transform.position, gameObject.GetComponentInParent<Transform>().position);
+        //distance = Vector3.Distance(heldObj.transform.position, gameObject.GetComponentInParent<Transform>().position);
+        if(heldObj == null)
+        {
+            RaycastHit raycast;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out raycast, pickUpRange))
+            {
+                Debug.Log(raycast.collider.gameObject);
+                interactUI.enabled = true;
 
+            }
+
+        }
+        
+        
         if (Input.GetKeyDown(KeyCode.E))
         {
             if(heldObj == null)
             {
                 RaycastHit hit;
+                Debug.Log("tir lance");
+
                 if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
                     Debug.Log(hit.collider.gameObject);
+
                     // Ignore le GameObject avec le Layer "Ignore Layer"
                     gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+
                     Grab(hit.transform.gameObject);
+                    interactUI.enabled = false;
                     Debug.Log("objet prit");
 
-                    Debug.Log(distance);
-                    if (distance <= 2f)
-                    {
-                        Debug.Log("trop loin");
-                        Drop();
-                    }
+                    //Debug.Log(distance);
+                    //if (distance <= 2f)
+                    //{
+                    //    Debug.Log("trop loin");
+                    //    Drop();
+                    //}
 
                     if (Input.GetKeyDown(KeyCode.F))
                     {
@@ -46,9 +65,7 @@ public class PickUP : MonoBehaviour
             {
                 Drop();
                 Debug.Log("objet laché");
-            }
-
-           
+            } 
         }
     }
 
