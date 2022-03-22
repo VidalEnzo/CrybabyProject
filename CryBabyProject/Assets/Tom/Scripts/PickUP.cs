@@ -7,13 +7,10 @@ public class PickUP : MonoBehaviour
     public float pickUpRange = 1;
     public float launchForce = 250;
     public Transform container;
-    float distance;
     GameObject heldObj;
 
     private void Update()
     {
-        distance = Vector3.Distance(heldObj.transform.position, gameObject.GetComponentInParent<Transform>().position);
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             if(heldObj == null)
@@ -21,18 +18,12 @@ public class PickUP : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
+                    Debug.Log("tir lance");
                     Debug.Log(hit.collider.gameObject);
                     // Ignore le GameObject avec le Layer "Ignore Layer"
                     gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
                     Grab(hit.transform.gameObject);
                     Debug.Log("objet prit");
-
-                    Debug.Log(distance);
-                    if (distance <= 2f)
-                    {
-                        Debug.Log("trop loin");
-                        Drop();
-                    }
 
                     if (Input.GetKeyDown(KeyCode.F))
                     {
