@@ -17,11 +17,14 @@ public class PickUP : MonoBehaviour
         //distance = Vector3.Distance(heldObj.transform.position, gameObject.GetComponentInParent<Transform>().position);
         if(heldObj == null)
         {
+            interactUI.enabled = false;
+
             RaycastHit raycast;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out raycast, pickUpRange))
             {
                 Debug.Log(raycast.collider.gameObject);
                 interactUI.enabled = true;
+                Debug.Log("interface");
 
             }
 
@@ -37,7 +40,6 @@ public class PickUP : MonoBehaviour
 
                 if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
-                    Debug.Log(hit.collider.gameObject);
 
                     // Ignore le GameObject avec le Layer "Ignore Layer"
                     gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
