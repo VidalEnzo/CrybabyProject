@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class Timer : MonoBehaviour
         else
         {
             timeValue = 0;
-            youLost.gameObject.SetActive(true);
+            //youLost.gameObject.SetActive(true);
+            Loose();
         }
 
         DisplayTime(timeValue);
@@ -37,5 +39,10 @@ public class Timer : MonoBehaviour
         float miliseconds = timeToDisplay % 1 * 1000;
 
         timeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, miliseconds);
+    }
+
+    void Loose()
+    {
+        SceneManager.LoadScene("Loose");
     }
 }

@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("TomMainScene");
+        SceneManager.LoadScene("PlayTest");
     }
 
     public void Exit()
