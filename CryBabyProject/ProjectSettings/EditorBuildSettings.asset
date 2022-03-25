@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Tom/Scene/MainMenu.unity
+    guid: 5636b69a6dc9fa049b860062cc948979
+  - enabled: 1
+    path: Assets/Tom/Scene/PlayTest.unity
+    guid: 407b8f0305fd0db438ca7fcff02a870b
+  - enabled: 1
+    path: Assets/Enzo/Scene/Loose.unity
+    guid: 4514fc943008c3744b7def15acce5076
   m_configObjects: {}
