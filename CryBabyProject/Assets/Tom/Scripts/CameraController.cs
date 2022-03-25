@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     float xAxisClamp = 0;
 
     [SerializeField]
-    float mouseSensitivity = 20f;
+    float mouseSensitivity = 10f;
 
 
     private void Update()

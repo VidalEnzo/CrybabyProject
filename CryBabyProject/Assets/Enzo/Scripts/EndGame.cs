@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menu : MonoBehaviour
+public class EndGame : MonoBehaviour
 {
+    // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-    public void StartGame()
+
+    void Replay()
     {
-        SceneManager.LoadScene("PlayTest");
+        SceneManager.LoadScene("Play Test");
     }
 
-    public void Exit()
+    void Quit()
     {
         Application.Quit();
     }
