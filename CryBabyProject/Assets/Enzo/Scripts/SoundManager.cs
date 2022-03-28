@@ -2,12 +2,12 @@ using UnityEngine.Audio;
 using System;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
 
     public Sound[] sounds;
 
-    public static AudioManager instance;
+    public static SoundManager instance;
 
     void Awake()
     {
@@ -40,3 +40,5 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 }
+
+////FindObjectOfType<AudioManager>().Play("");
