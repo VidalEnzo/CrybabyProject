@@ -8,13 +8,11 @@ public class PickUP : MonoBehaviour
     public float pickUpRange = 1;
     public float launchForce = 250;
     public Transform container;
-    //float distance;
     GameObject heldObj;
     public Text interactUI;
 
     private void Update()
     {
-        //distance = Vector3.Distance(heldObj.transform.position, gameObject.GetComponentInParent<Transform>().position);
         if(heldObj == null) //Check si un objet est tenu ou pas
         {
             interactUI.enabled = false; //désactive le texte du Canvas
@@ -29,7 +27,6 @@ public class PickUP : MonoBehaviour
 
                 interactUI.enabled = true; // Alors active le texte du Canvas
             }
-
         }
         
         
@@ -47,34 +44,23 @@ public class PickUP : MonoBehaviour
 
                     Grab(hit.transform.gameObject); // Procède au code de la fonction Grab()
                     interactUI.enabled = false; // Désactive le texte du Canvas
-
-                    //Debug.Log(distance);
-                    //if (distance <= 2f)
-                    //{
-                    //    Debug.Log("trop loin");
-                    //    Drop();
-                    //}
-
-                    if (Input.GetKeyDown(KeyCode.F))
-                    {
-                        Drop();
-                        MoveObject();
-                        Debug.Log("objet lancé");
-                    }
                 }
+
             }
             else
             {
                 Drop(); // Si le joueur rappuie sur E, accède au code de la fonction Drop()
             } 
         }
-    }
 
-    void MoveObject()
-    {
-        Vector3 moveDirection = (container.position - heldObj.transform.position);
-        heldObj.GetComponent<Rigidbody>().AddForce(moveDirection * launchForce);
-
+        if(heldObj != null)
+        {
+            Debug.Log("ici");
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Throw();
+            }
+        }
     }
 
     void Grab(GameObject grabedObj)
@@ -91,12 +77,14 @@ public class PickUP : MonoBehaviour
         rigObj.velocity = Vector3.zero; // Réinitialise la vélocité (force appliquée par le Rigidbody) de l'objet sélectionné
         rigObj.angularVelocity = Vector3.zero; // Réinitialise la vélocité angulaire (force de rotation appliquée par le Rigidbody) de l'objet sélectionné
 
+        
+
         //rigObj.isKinematic = true;
     }
 
-    void Drop()
+    public void Drop()
     {
-        Rigidbody heldRig = heldObj.GetComponent<Rigidbody>(); // Initialisation et récupération du Rigidbody de l'objet attrapé
+        Rigidbody  heldRig = heldObj.GetComponent<Rigidbody>(); // Initialisation et récupération du Rigidbody de l'objet attrapé
         Collider colObj = heldObj.GetComponent<Collider>(); // Initialisation et récupération du Collider de l'objet attrapé
 
         colObj.isTrigger = false; // Dans le Collider, set l'option isTrigger à false
@@ -111,6 +99,21 @@ public class PickUP : MonoBehaviour
         //heldRig.isKinematic = false;
 
     }
+
+    void Throw()
+    { 
+        Rigidbody rigidbodyObj = heldObj.GetComponent<Rigidbody>();
+        Collider colObj = heldObj.GetComponent<Collider>(); // Initialisation et récupération du Collider de l'objet attrapé
+
+        colObj.isTrigger = false; // Dans le Collider, set l'option isTrigger à false
+        heldObj.GetComponent<Rigidbody>().AddForce(container.forward * launchForce); // Ajoute une force dans la direction de devant pour simuler le lancer d'un objet
+        rigidbodyObj.useGravity = true; // Résactive la graivté du Rigidbody de l'objet sélectionné 
+        heldObj.transform.parent = null; // Détache l'objet tenu par le gameObject parent pour qu'il ne soit plus enfant 
+        rigidbodyObj.constraints = RigidbodyConstraints.None; // Désactive les contraintes appliqués au Rigidbody (fixation des positions)
+        heldObj = null;
+        Debug.Log("objet lancé");
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

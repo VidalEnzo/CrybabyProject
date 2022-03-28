@@ -1,33 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChambreInteraction : MonoBehaviour
 {
     //public GameObject door;
     public InteractObject myTool;
 
-    //Collider doorCol;
-
-    private void Update()
+    private void OnTriggerEnter(Collider other) // Détecte la collision avec un gameObject
     {
-        //();
-    }
-
-    //public void GetObject()
-    //{
-    //    doorCol = door.GetComponent<Collider>();
-    //}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player")) // si le gameObject a le tag "Player"
         {
-            
+            Debug.Log("player");
+            SceneManager.LoadScene("Loose"); // Charge la scène "Loose"
         }
-        Debug.Log("detection collision");
-        myTool.CheckObject(other.gameObject);
-        
+        else // Si un autre objet entre en collision 
+        {
+            myTool.CheckObject(other.gameObject); // Appelle et applique les instructions du script "CheckObjet()"
+        } 
     }
 
 

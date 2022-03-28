@@ -41,7 +41,5 @@ public class PlayerMovement : MonoBehaviour
 
         // Permet un mouvement fluide et uniforme 
         character.Move(move * Time.deltaTime);
-
     }
-    
 }
