@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - WrongObject
+  - GoodObject
+  - Seau
+  - scie
+  - Clef
+  - "T\xE9l\xE9commande"
+  - Xylophone
   layers:
   - Default
   - TransparentFX
@@ -11,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Toilette
   - 
   - 
   - 

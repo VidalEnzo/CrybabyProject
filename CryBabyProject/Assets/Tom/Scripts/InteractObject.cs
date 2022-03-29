@@ -5,35 +5,58 @@ using UnityEngine.SceneManagement;
 
 public class InteractObject : MonoBehaviour
 {
-    [SerializeField] ObjetInteractif[] allTools;
+    [SerializeField] ObjetInteractif[] chambreTools;
+    [SerializeField] ObjetInteractif[] salonTools;
+    [SerializeField] ObjetInteractif[] toiletsTools;
 
-    public Animator anim;
-    public Collider colDoor;
+    public Animator animChambre;
+    public Animator animSalon;
 
-    public void CheckObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
+    public Collider colChambreDoor;
+
+
+    public void CheckChambreObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
     {
-        for (int i = 0; i < allTools.Length;  i++) // Parcours le tableau initialiser plus bas 
+        for (int i = 0; i < chambreTools.Length;  i++) // Parcours le tableau initialiser plus bas 
         {
             if (myObj != null) // Vérifie s'il y a bien un objet qui se trouve dans le collider 
             {
-                if (myObj.transform.name == allTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau 
+                if (myObj.transform.name == chambreTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau 
                 {
                     if (myObj.CompareTag("WrongObject")) // Si l'objet entré en collsion porte le tag "WrongObject"
                     {
                         // Appelle et application du son 
                         SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
                     }
-                    else if (myObj.CompareTag("GoodObject")) // Si l'objet entré en collsion porte le tag "GoodObject"
+                    else if (myObj.CompareTag("scie")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
-                        anim.SetBool("goodObject", true); // Modifie la valeur la valeur de la variable "goodObject" à true
-                        colDoor.enabled = !colDoor.enabled;
+                        animChambre.SetBool("goodObject", true); // Modifie la valeur la valeur de la variable "goodObject" à true
+                        colChambreDoor.enabled = !colChambreDoor.enabled;
                     }
                 }
             }
-  
+        }
+    }
 
-
-
+    public void CheckSalonObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
+    {
+        for (int i = 0; i < salonTools.Length; i++) // Parcours le tableau initialiser plus bas 
+        {
+            if (myObj != null) // Vérifie s'il y a bien un objet qui se trouve dans le collider 
+            {
+                if (myObj.transform.name == salonTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau
+                {
+                    if (myObj.CompareTag("WrongObject")) // Si l'objet entré en collsion porte le tag "WrongObject"
+                    {
+                        // Appelle et application du son 
+                        SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+                    }
+                    else if (myObj.CompareTag("Seau")) // Si l'objet entré en collsion porte le tag "GoodObject"
+                    {
+                        animSalon.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
+                    }
+                }
+            }
         }
     }
 

@@ -10,6 +10,7 @@ public class PickUP : MonoBehaviour
     public Transform container;
     GameObject heldObj;
     public Text interactUI;
+    public Text winUI;
 
     private void Update()
     {
@@ -20,13 +21,9 @@ public class PickUP : MonoBehaviour
             RaycastHit raycast; // Initialisation d'un Raycast
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out raycast, pickUpRange)) // Sile Raycast touche un objet dans la portée de pickUpRange
             {
-                //if(gameObject.layer == LayerMask.NameToLayer("Toilette"))
-                //{
-
-                //}
-
                 interactUI.enabled = true; // Alors active le texte du Canvas
             }
+
         }
         
         
@@ -55,7 +52,6 @@ public class PickUP : MonoBehaviour
 
         if(heldObj != null)
         {
-            Debug.Log("ici");
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Throw();
@@ -111,7 +107,6 @@ public class PickUP : MonoBehaviour
         heldObj.transform.parent = null; // Détache l'objet tenu par le gameObject parent pour qu'il ne soit plus enfant 
         rigidbodyObj.constraints = RigidbodyConstraints.None; // Désactive les contraintes appliqués au Rigidbody (fixation des positions)
         heldObj = null;
-        Debug.Log("objet lancé");
     }
 
     private void OnDrawGizmos()
