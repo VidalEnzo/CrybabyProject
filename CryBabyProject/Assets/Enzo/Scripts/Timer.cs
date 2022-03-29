@@ -6,28 +6,46 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public float timeValue = 90;
     public Text timeText;
-    public Text youLost;
+    public Slider slider;
+    public float maxTime = 10;
+
+    float timeValue;
     
+
+    private void Start()
+    {
+        SetMaxTime();
+    }
+
     void Update()
     {
-        if(timeValue > 0)
+        if (timeValue <= maxTime)
         {
-            timeValue -= Time.deltaTime;
+            timeValue += Time.deltaTime;
+            slider.value = timeValue; 
         }
         else
         {
-            timeValue = 0;
-            //youLost.gameObject.SetActive(true);
+            timeValue = maxTime;
+            Debug.Log(timeValue);
             Loose();
         }
 
         DisplayTime(timeValue);
         
     }
+
+    void SetMaxTime()
+    {
+        timeValue = 0; 
+        slider.value = timeValue;
+    }    
+
     void DisplayTime(float timeToDisplay)
     {
+       
+
         if (timeToDisplay < 0)
         {
             timeToDisplay = 0;
