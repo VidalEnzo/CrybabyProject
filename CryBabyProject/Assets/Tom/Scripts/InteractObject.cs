@@ -10,10 +10,13 @@ public class InteractObject : MonoBehaviour
     [SerializeField] ObjetInteractif[] toiletsTools;
     [SerializeField] Particule[] allParticles;
 
+    PickUP drop;
+
     public Animator animChambre;
     public Animator animSalon;
 
     public Collider colChambreDoor;
+    public Collider colSalonDoor;
     public Collider fuite;
 
 
@@ -32,8 +35,10 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("scie")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
+                        
                         animChambre.SetBool("goodObject", true); // Modifie la valeur la valeur de la variable "goodObject" à true
                         colChambreDoor.enabled = !colChambreDoor.enabled;
+                        drop.Drop();
                     }
                 }
             }
@@ -55,7 +60,10 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("Seau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
+                        
+                        colSalonDoor.enabled = !colSalonDoor.enabled;
                         animSalon.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
+                        drop.Drop();
                     }
                 }
             }
@@ -78,6 +86,8 @@ public class InteractObject : MonoBehaviour
                     else if (myObj.CompareTag("Marteau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
                         fuite.enabled = !fuite.enabled;
+                        allParticles.particleEmitter.emit = false;
+                        drop.Drop();
                     }
                 }
             }
