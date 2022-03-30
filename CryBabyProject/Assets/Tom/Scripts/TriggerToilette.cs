@@ -58,7 +58,7 @@ public class TriggerToilette : MonoBehaviour
         {
              timeValue = maxTime;
              Debug.Log("Gagné");
-             //SceneManager.LoadScene("Win");
+             SceneManager.LoadScene("Win");
         }
     }
 }
