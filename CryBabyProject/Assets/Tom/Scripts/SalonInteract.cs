@@ -11,7 +11,7 @@ public class SalonInteract : MonoBehaviour
     {
         if (other.CompareTag("WrongObject")) // si le gameObject a le tag "Player"
         {
-            Debug.Log("player");
+
             SceneManager.LoadScene("Loose"); // Charge la scène "Loose"
         }
         else // Si un autre objet entre en collision 

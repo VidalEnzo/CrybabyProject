@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3748657341722806631}
   - component: {fileID: 3748657341722806628}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: WaterParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4758,7 +4758,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d758850f28dddcf4397580e207b43c5f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
