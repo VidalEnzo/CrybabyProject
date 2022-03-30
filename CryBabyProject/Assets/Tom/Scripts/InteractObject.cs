@@ -15,7 +15,12 @@ public class InteractObject : MonoBehaviour
 
     public Collider colChambreDoor;
     public Collider fuite;
+    public AudioSource tvSound;
 
+    private void Start()
+    {
+        tvSound = GetComponent<AudioSource>();
+    }
 
     public void CheckChambreObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
     {
@@ -32,6 +37,7 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("scie")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
+                        FindObjectOfType<SoundManager>().Play("SawCutting");
                         animChambre.SetBool("goodObject", true); // Modifie la valeur la valeur de la variable "goodObject" à true
                         colChambreDoor.enabled = !colChambreDoor.enabled;
                     }
@@ -55,6 +61,8 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("Seau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
+                        FindObjectOfType<SoundManager>().Play("WaterDrop");
+                        tvSound.Stop();
                         animSalon.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
                     }
                 }
@@ -77,6 +85,7 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("Marteau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
+                        FindObjectOfType<SoundManager>().Play("Hammer");
                         fuite.enabled = !fuite.enabled;
                     }
                 }
