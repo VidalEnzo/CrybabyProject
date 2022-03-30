@@ -14,6 +14,7 @@ public class InteractObject : MonoBehaviour
     public Animator animSalon;
 
     public Collider colChambreDoor;
+    public Collider colSalonDoor;
     public Collider fuite;
     public AudioSource tvSound;
 
@@ -64,6 +65,7 @@ public class InteractObject : MonoBehaviour
                         FindObjectOfType<SoundManager>().Play("WaterDrop");
                         tvSound.Stop();
                         animSalon.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
+                        colSalonDoor.enabled = !colSalonDoor.enabled;
                     }
                 }
             }
