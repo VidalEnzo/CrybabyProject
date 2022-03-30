@@ -11,6 +11,7 @@ public class PickUP : MonoBehaviour
     GameObject heldObj;
     public Text interactUI;
     public Text winUI;
+    public GameObject saw;
 
     private void Update()
     {
@@ -72,7 +73,11 @@ public class PickUP : MonoBehaviour
         rigObj.useGravity = false; // Désactive la graivté du Rigidbody de l'objet sélectionné 
         rigObj.velocity = Vector3.zero; // Réinitialise la vélocité (force appliquée par le Rigidbody) de l'objet sélectionné
         rigObj.angularVelocity = Vector3.zero; // Réinitialise la vélocité angulaire (force de rotation appliquée par le Rigidbody) de l'objet sélectionné
-
+        
+        if(grabedObj == saw)
+        {
+            FindObjectOfType<SoundManager>().Play("SawCutting");
+        }
         
 
         //rigObj.isKinematic = true;

@@ -44,8 +44,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
+  - name: 3310
+    clip: {fileID: 8300000, guid: 198120ec34ad3de42b24a8768c119983, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Click1
+    clip: {fileID: 8300000, guid: db2b7e2876cfbe24a817f8ce5a6b03b1, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Click2
+    clip: {fileID: 8300000, guid: e0d14d9523407fe4981e1bcd17376a6d, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Hammer
+    clip: {fileID: 8300000, guid: 50f1f920e57531742bc9dc91a99f6472, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: KeyMoan
+    clip: {fileID: 8300000, guid: d505fea0d0d055443931b98603c8e8d1, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SawCutting
+    clip: {fileID: 8300000, guid: 2a7779d0d34566444bd63916d46e2c1b, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: ScreamMusic
+    clip: {fileID: 8300000, guid: 8efb144e6762e974c81d1d41dd4a55a9, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: SnoringBaby
+    clip: {fileID: 8300000, guid: d2bdb70794cba9f458074b3118fe8c14, type: 3}
+    volume: 0
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: SpringComic
+    clip: {fileID: 8300000, guid: 70803ed387dbb4d4ba517e5770124d34, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: TVsound
+    clip: {fileID: 8300000, guid: e6ac3fbfad53367439843f4b844a8f2b, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: WaterDrop
+    clip: {fileID: 8300000, guid: bfbf7689e842d41448465b4e4ce820e8, type: 3}
     volume: 0
     pitch: 0
     loop: 0
