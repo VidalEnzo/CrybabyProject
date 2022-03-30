@@ -29,7 +29,8 @@ public class PickUP : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E)) // Si le joueur appuie sur le touche E
         {
-            if(heldObj == null) // Et s'il n'y a pas d'objet tenu 
+
+            if (heldObj == null) // Et s'il n'y a pas d'objet tenu 
             {
                 RaycastHit hit; // Initialisation d'un Raycast
 
@@ -47,16 +48,18 @@ public class PickUP : MonoBehaviour
             else
             {
                 Drop(); // Si le joueur rappuie sur E, accède au code de la fonction Drop()
-            } 
+            }
+
         }
 
-        if(heldObj != null)
+        if (heldObj != null)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Throw();
             }
         }
+
     }
 
     void Grab(GameObject grabedObj)
@@ -73,7 +76,7 @@ public class PickUP : MonoBehaviour
         rigObj.velocity = Vector3.zero; // Réinitialise la vélocité (force appliquée par le Rigidbody) de l'objet sélectionné
         rigObj.angularVelocity = Vector3.zero; // Réinitialise la vélocité angulaire (force de rotation appliquée par le Rigidbody) de l'objet sélectionné
 
-        
+
 
         //rigObj.isKinematic = true;
     }

@@ -10,15 +10,17 @@ public class InteractObject : MonoBehaviour
     [SerializeField] ObjetInteractif[] toiletsTools;
     [SerializeField] Particule[] allParticles;
 
-    PickUP drop;
-
     public Animator animChambre;
     public Animator animSalon;
 
     public Collider colChambreDoor;
-    public Collider colSalonDoor;
     public Collider fuite;
+    public AudioSource tvSound;
 
+    private void Start()
+    {
+        tvSound = GetComponent<AudioSource>();
+    }
 
     public void CheckChambreObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
     {
@@ -35,10 +37,9 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("scie")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
-                        
+                        FindObjectOfType<SoundManager>().Play("SawCutting");
                         animChambre.SetBool("goodObject", true); // Modifie la valeur la valeur de la variable "goodObject" à true
                         colChambreDoor.enabled = !colChambreDoor.enabled;
-                        drop.Drop();
                     }
                 }
             }
@@ -60,10 +61,9 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("Seau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
-                        
-                        colSalonDoor.enabled = !colSalonDoor.enabled;
+                        FindObjectOfType<SoundManager>().Play("WaterDrop");
+                        tvSound.Stop();
                         animSalon.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
-                        drop.Drop();
                     }
                 }
             }
@@ -85,9 +85,8 @@ public class InteractObject : MonoBehaviour
                     }
                     else if (myObj.CompareTag("Marteau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
+                        FindObjectOfType<SoundManager>().Play("Hammer");
                         fuite.enabled = !fuite.enabled;
-                        allParticles.particleEmitter.emit = false;
-                        drop.Drop();
                     }
                 }
             }
