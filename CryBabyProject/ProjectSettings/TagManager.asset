@@ -11,6 +11,7 @@ TagManager:
   - Clef
   - "T\xE9l\xE9commande"
   - Xylophone
+  - Marteau
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Water
   - UI
   - Toilette
-  - 
+  - Echelle
   - 
   - 
   - 

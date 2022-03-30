@@ -12,7 +12,6 @@ public class ChambreInteraction : MonoBehaviour
     {
         if(other.CompareTag("Player")) // si le gameObject a le tag "Player"
         {
-            Debug.Log("player");
             SceneManager.LoadScene("Loose"); // Charge la scène "Loose"
         }
         else // Si un autre objet entre en collision 

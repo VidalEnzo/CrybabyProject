@@ -8,11 +8,13 @@ public class InteractObject : MonoBehaviour
     [SerializeField] ObjetInteractif[] chambreTools;
     [SerializeField] ObjetInteractif[] salonTools;
     [SerializeField] ObjetInteractif[] toiletsTools;
+    [SerializeField] Particule[] allParticles;
 
     public Animator animChambre;
     public Animator animSalon;
 
     public Collider colChambreDoor;
+    public Collider fuite;
 
 
     public void CheckChambreObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
@@ -60,9 +62,37 @@ public class InteractObject : MonoBehaviour
         }
     }
 
+    public void CheckToiletteObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
+    {
+        for (int i = 0; i < toiletsTools.Length; i++) // Parcours le tableau initialiser plus bas 
+        {
+            if (myObj != null) // Vérifie s'il y a bien un objet qui se trouve dans le collider 
+            {
+                if (myObj.transform.name == toiletsTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau
+                {
+                    if (myObj.CompareTag("WrongObject")) // Si l'objet entré en collsion porte le tag "WrongObject"
+                    {
+                        // Appelle et application du son 
+                        SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+                    }
+                    else if (myObj.CompareTag("Marteau")) // Si l'objet entré en collsion porte le tag "GoodObject"
+                    {
+                        fuite.enabled = !fuite.enabled;
+                    }
+                }
+            }
+        }
+    }
+
     [System.Serializable]
     class ObjetInteractif
     {
         public GameObject tools;
+    }
+
+    [System.Serializable]
+    class Particule
+    {
+        public GameObject particle;
     }
 }
