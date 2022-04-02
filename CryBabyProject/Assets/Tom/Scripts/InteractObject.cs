@@ -21,6 +21,36 @@ public class InteractObject : MonoBehaviour
     private void Start()
     {
         tvSound = GetComponent<AudioSource>();
+        tvSound.volume = 0.5f;
+    }
+
+    public IEnumerator TimeDelay()
+    {
+        FindObjectOfType<SoundManager>().Play("KeyMoan");
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+    }
+
+    public IEnumerator TimeDelay2()
+    {
+        tvSound.volume = 2f;
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Loose");
+    }
+
+    public IEnumerator TimeDelay3()
+    {
+        tvSound.Stop();
+        FindObjectOfType<SoundManager>().Play("MetalHit");
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Loose");
+    }
+
+    public IEnumerator TimeDelay4()
+    {
+        FindObjectOfType<SoundManager>().Play("SpringComic");
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Loose");
     }
 
     public void CheckChambreObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
@@ -31,10 +61,9 @@ public class InteractObject : MonoBehaviour
             {
                 if (myObj.transform.name == chambreTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau 
                 {
-                    if (myObj.CompareTag("WrongObject")) // Si l'objet entré en collsion porte le tag "WrongObject"
+                    if (myObj.CompareTag("Clef")) // Si l'objet entré en collsion porte le tag "WrongObject"
                     {
-                        // Appelle et application du son 
-                        SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+                        StartCoroutine(TimeDelay()); 
                     }
                     else if (myObj.CompareTag("scie")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
@@ -55,10 +84,13 @@ public class InteractObject : MonoBehaviour
             {
                 if (myObj.transform.name == salonTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau
                 {
-                    if (myObj.CompareTag("WrongObject")) // Si l'objet entré en collsion porte le tag "WrongObject"
+                    if (myObj.CompareTag("Télécommande")) // Si l'objet entré en collsion porte le tag "WrongObject"
                     {
-                        // Appelle et application du son 
-                        SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+                        StartCoroutine(TimeDelay2());
+                    }
+                    else if (myObj.CompareTag("Xylo"))
+                    {
+                        StartCoroutine(TimeDelay3());
                     }
                     else if (myObj.CompareTag("Seau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {
@@ -80,10 +112,9 @@ public class InteractObject : MonoBehaviour
             {
                 if (myObj.transform.name == toiletsTools[i].tools.name) // Vérifie si le nom de l'objet entré en collsion correspond à celui d'un objet présent dans le tableau
                 {
-                    if (myObj.CompareTag("WrongObject")) // Si l'objet entré en collsion porte le tag "WrongObject"
+                    if (myObj.CompareTag("Echelle")) // Si l'objet entré en collsion porte le tag "WrongObject"
                     {
-                        // Appelle et application du son 
-                        SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+                        StartCoroutine(TimeDelay4());
                     }
                     else if (myObj.CompareTag("Marteau")) // Si l'objet entré en collsion porte le tag "GoodObject"
                     {

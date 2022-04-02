@@ -110,3 +110,9 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
+  - name: MetalRing
+    clip: {fileID: 8300000, guid: cc5c621cd5ca4544a9f4c8b2da7a9e94, type: 3}
+    volume: 0.3
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}

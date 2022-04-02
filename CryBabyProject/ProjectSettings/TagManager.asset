@@ -10,8 +10,9 @@ TagManager:
   - scie
   - Clef
   - "T\xE9l\xE9commande"
-  - Xylophone
   - Marteau
+  - Xylo
+  - Echelle
   layers:
   - Default
   - TransparentFX
