@@ -6,8 +6,14 @@ using UnityEngine.UI;
 
 public class TriggerToilette : MonoBehaviour
 {
-    public Text winUI;
-    public float maxTime = 1;
+    [SerializeField]
+    Text winUI;
+
+    [SerializeField]
+    Image back;
+
+    [SerializeField]
+    float maxTime = 1;
 
     bool inToilette = false;
     float timeValue;
@@ -15,6 +21,7 @@ public class TriggerToilette : MonoBehaviour
     private void Start()
     {
         winUI.enabled = false;
+        back.enabled = false;
     }
 
     private void Update()
@@ -37,27 +44,26 @@ public class TriggerToilette : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         winUI.enabled = false;
+        back.enabled = false;
         inToilette = false;
     }
 
     void Win()
     {
         winUI.enabled = true;
+        back.enabled = true;
         inToilette = true;
-        Debug.Log(inToilette);
     }
 
     void TakeAShit()
     {
         if (timeValue <= maxTime)
         {
-            Debug.Log("timer lance");
             timeValue += Time.deltaTime;
         }
         else
         {
              timeValue = maxTime;
-             Debug.Log("Gagné");
              SceneManager.LoadScene("Win");
         }
     }

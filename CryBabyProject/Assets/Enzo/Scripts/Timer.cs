@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public Text timeText;
-    public Slider slider;
-    public float maxTime = 10;
+    [SerializeField]
+    Slider slider, eventSlider;
 
-    float timeValue;
-    
+    [SerializeField]
+    float maxTime = 180, eventMaxValue = 20;
+    float timeValue, eventTimeValue;
+
 
     private void Start()
     {
         SetMaxTime();
+        SetEventMaxTime();
+        eventSlider.enabled = false;
     }
 
     void Update()
@@ -23,40 +26,47 @@ public class Timer : MonoBehaviour
         if (timeValue <= maxTime)
         {
             timeValue += Time.deltaTime;
-            slider.value = timeValue; 
+            slider.value = timeValue;
         }
         else
         {
             timeValue = maxTime;
-            Debug.Log(timeValue);
             Loose();
         }
 
-        DisplayTime(timeValue);
-        
+    }
+
+    void SetEventMaxTime()
+    {
+        eventTimeValue = 0;
+        slider.value = eventTimeValue;
+    }
+
+    public void SartEventTimer()
+    {
+        eventSlider.enabled = true;
+        if (eventTimeValue <= eventMaxValue)
+        {
+            eventTimeValue += Time.deltaTime;
+            eventSlider.value = eventTimeValue;
+        }
+        else
+        {
+            eventTimeValue = eventMaxValue;
+            Loose();
+        }
     }
 
     void SetMaxTime()
     {
         timeValue = 0; 
         slider.value = timeValue;
-    }    
+    }   
 
-    void DisplayTime(float timeToDisplay)
+    public void StopEventTimer()
     {
-       
-
-        if (timeToDisplay < 0)
-        {
-            timeToDisplay = 0;
-        }
-       
-
-        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
-        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        float miliseconds = timeToDisplay % 1 * 1000;
-
-        timeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, miliseconds);
+        eventSlider.enabled = false;
+        eventTimeValue = 0;
     }
 
     void Loose()
