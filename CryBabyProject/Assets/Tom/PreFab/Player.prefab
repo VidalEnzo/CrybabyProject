@@ -24,11 +24,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3918222954283906650}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.14300013, z: 2.4960005}
+  m_LocalPosition: {x: 0, y: -0.5609999, z: 2.5320005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5333793783617718013}
-  m_RootOrder: 1
+  m_Father: {fileID: 7829232194157282872}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6462558530845051939
 GameObject:
@@ -91,7 +91,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1.8, z: 1}
   m_Children:
   - {fileID: 3461726938695696814}
-  - {fileID: 324162484611905996}
   - {fileID: 7829232194157282872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -154,6 +153,7 @@ GameObject:
   - component: {fileID: 7829232194157282875}
   - component: {fileID: 7829232194157282874}
   - component: {fileID: 1558808572124515530}
+  - component: {fileID: 4849478792900821548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -169,11 +169,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7829232194157282877}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.305, z: -0.185}
+  m_LocalPosition: {x: 0, y: 0.704, z: -0.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 324162484611905996}
   m_Father: {fileID: 5333793783617718013}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7829232194157282875
 Camera:
@@ -239,5 +240,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5333793783617718013}
-  playerView: {fileID: 3461726938695696814}
   mouseSensitivity: 20
+--- !u!114 &4849478792900821548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829232194157282877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efcef429b7ba83a4cac12620bc5f976c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpRange: 1.5
+  launchForce: 250
+  container: {fileID: 324162484611905996}
+  interactUI: {fileID: 0}
+  curseur: {fileID: 0}

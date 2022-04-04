@@ -13,7 +13,7 @@ public class Win : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene("PlayTest");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void Quit()

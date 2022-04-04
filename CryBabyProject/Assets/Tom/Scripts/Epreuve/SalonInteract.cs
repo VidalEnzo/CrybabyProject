@@ -9,12 +9,7 @@ public class SalonInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // Détecte la collision avec un gameObject
     {
-        if (other.CompareTag("WrongObject")) // si le gameObject a le tag "Player"
-        {
-
-            SceneManager.LoadScene("Loose"); // Charge la scène "Loose"
-        }
-        else // Si un autre objet entre en collision 
+        if (other.CompareTag("Untagged")) // si le gameObject a le tag "Player"
         {
             myTool.CheckSalonObject(other.gameObject); // Appelle et applique les instructions du script "CheckSalonObjet()"
         }

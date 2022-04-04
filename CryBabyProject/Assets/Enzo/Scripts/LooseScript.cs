@@ -14,7 +14,7 @@ public class LooseScript : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene("PlayTest");
+        SceneManager.LoadScene("Level 1");
     }
 
     public void Quit()

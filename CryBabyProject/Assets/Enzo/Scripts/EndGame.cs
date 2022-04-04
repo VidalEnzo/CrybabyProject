@@ -14,7 +14,7 @@ public class EndGame : MonoBehaviour
 
     void Replay()
     {
-        SceneManager.LoadScene("Play Test");
+        SceneManager.LoadScene("Level 1");
     }
 
     void Quit()
