@@ -33,7 +33,21 @@ public class InteractObject : MonoBehaviour
     private void Start()
     {
         tvSound = GetComponent<AudioSource>();
+        tvSound.volume = 1f;
     }
+
+    public IEnumerator Time()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Loose");
+    }
+
+    public IEnumerator Time2()
+    {
+        yield return new WaitForSeconds(2);
+        FindObjectOfType<SoundManager>().Play("Nice");
+    }
+
 
     public void CheckChambreObject(GameObject myObj) // Fonction pour vérifier quel objet entre en collision
     {
@@ -69,8 +83,8 @@ public class InteractObject : MonoBehaviour
         }
         else if(myType.typeOfObject == EnumObject.Clef)
         {
-            // Appelle et application du son 
-            SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+            FindObjectOfType<SoundManager>().Play("KeyMoan");
+            StartCoroutine(Time());
         }
     }
 
@@ -80,8 +94,8 @@ public class InteractObject : MonoBehaviour
 
         if (myType.typeOfObject == EnumObject.SeauDeau)
         {
-            //FindObjectOfType<SoundManager>().Play("WaterDrop");
-            //tvSound.Stop();
+            FindObjectOfType<SoundManager>().Play("WaterDrop");
+            tvSound.Stop();
             animCuisine.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
             stopSalon.StopTimer();
             colTV.enabled = !colTV.enabled;
@@ -90,13 +104,13 @@ public class InteractObject : MonoBehaviour
         }
         else if (myType.typeOfObject == EnumObject.Telecommande)
         {
-            // Appelle et application du son 
-            SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+            tvSound.volume = 10f;
+            StartCoroutine(Time());
         }
-        else if (myType.typeOfObject == EnumObject.Telecommande)
+        else if (myType.typeOfObject == EnumObject.Xylophone)
         {
-            // Appelle et application du son 
-            SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+            FindObjectOfType<SoundManager>().Play("3310");
+            StartCoroutine(Time());
         }
     }
 
@@ -106,7 +120,7 @@ public class InteractObject : MonoBehaviour
 
         if (myType.typeOfObject == EnumObject.Marteau)
         {
-            FindObjectOfType<SoundManager>().Play("Hammer");
+            FindObjectOfType<SoundManager>().Play("LevelEnding");
             WaterStop();
             fuite.enabled = !fuite.enabled;
             stopSDB.StopTimer();
@@ -116,8 +130,8 @@ public class InteractObject : MonoBehaviour
         }
         else if (myType.typeOfObject == EnumObject.Echelle)
         {
-            // Appelle et application du son 
-            SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+            FindObjectOfType<SoundManager>().Play("SpringComic");
+            StartCoroutine(Time());
         }
     }
 
@@ -127,17 +141,17 @@ public class InteractObject : MonoBehaviour
 
         if (myType.typeOfObject == EnumObject.Savon)
         {
-            FindObjectOfType<SoundManager>().Play("Hammer");
+            FindObjectOfType<SoundManager>().Play("Squeak");
             animSalon.SetBool("OuvreSalon", true);
             stopGarage.StopTimer();
             colSalonDoor.isTrigger = true;
             colVoiture.enabled = !colVoiture.enabled;
             triggerGarage.enabled = !triggerGarage.enabled;
+            StartCoroutine(Time2());
         }
         else if (myType.typeOfObject == EnumObject.Voiture)
         {
-            // Appelle et application du son 
-            SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+            StartCoroutine(Time());
         }
     }
 
@@ -147,18 +161,18 @@ public class InteractObject : MonoBehaviour
 
         if (myType.typeOfObject == EnumObject.Huile)
         {
-            //FindObjectOfType<SoundManager>().Play("Hammer");
+            FindObjectOfType<SoundManager>().Play("Hammer");
             animSDB.SetBool("OuvSDB", true);
             stopCuisine.StopTimer();
             colSDBDoor.isTrigger = true;
             colGaziniere.enabled = !colGaziniere.enabled;
             triggerCuisne.enabled = !triggerCuisne.enabled;
+            StartCoroutine(Time2());
             FireStop();
         }
         else if (myType.typeOfObject == EnumObject.Steack)
         {
-            // Appelle et application du son 
-            SceneManager.LoadScene("Loose");// Chargement de la scène "Loose"
+            StartCoroutine(Time());
         }
     }
 
