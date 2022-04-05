@@ -29,11 +29,13 @@ public class InteractObject : MonoBehaviour
 
     [SerializeField]
     AudioSource tvSound;
+    AudioSource carMusic;
 
     private void Start()
     {
         tvSound = GetComponent<AudioSource>();
         tvSound.volume = 1f;
+        carMusic = GetComponent<AudioSource>();
     }
 
     public IEnumerator Time()
@@ -46,6 +48,14 @@ public class InteractObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         FindObjectOfType<SoundManager>().Play("Nice");
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if(gameObject.tag == "Player")
+        {
+            carMusic.Play();
+        }
     }
 
 
@@ -149,10 +159,10 @@ public class InteractObject : MonoBehaviour
             triggerGarage.enabled = !triggerGarage.enabled;
             StartCoroutine(Time2());
         }
-        else if (myType.typeOfObject == EnumObject.Voiture)
-        {
-            StartCoroutine(Time());
-        }
+        //else if (myType.typeOfObject == EnumObject.Voiture)
+        //{
+            //StartCoroutine(Time());
+        //}
     }
 
     public void CheckCuisineObject(GameObject myObj)
