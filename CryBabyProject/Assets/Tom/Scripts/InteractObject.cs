@@ -159,10 +159,6 @@ public class InteractObject : MonoBehaviour
             triggerGarage.enabled = !triggerGarage.enabled;
             StartCoroutine(Time2());
         }
-        //else if (myType.typeOfObject == EnumObject.Voiture)
-        //{
-            //StartCoroutine(Time());
-        //}
     }
 
     public void CheckCuisineObject(GameObject myObj)
