@@ -28,18 +28,19 @@ public class InteractObject : MonoBehaviour
     ParticleSystem water1, water2, water3, water4, fire1, fire2, fire3, fire4;
 
     [SerializeField]
-    AudioSource tvSound;
     AudioSource gaz;
     AudioSource voiture;
+    AudioSource tv;
 
     private void Start()
     {
-        tvSound = GetComponent<AudioSource>();
-        tvSound.volume = 1f;
         gaz = GameObject.FindGameObjectWithTag("Gaziniere").GetComponent<AudioSource>();
         GetComponent<AudioSource>().clip = gaz.clip;
         voiture = GameObject.FindGameObjectWithTag("Voiture").GetComponent<AudioSource>();
         GetComponent<AudioSource>().clip = voiture.clip;
+        tv = GameObject.FindGameObjectWithTag("TV").GetComponent<AudioSource>();
+        GetComponent<AudioSource>().clip = tv.clip;
+
     }
 
     public IEnumerator Time()
@@ -83,6 +84,7 @@ public class InteractObject : MonoBehaviour
         if(myType.typeOfObject == EnumObject.Scie)
         {
             FindObjectOfType<SoundManager>().Play("SawCutting");
+            voiture.Play();
             animChambre.SetBool("Scie", true); // Modifie la valeur la valeur de la variable "goodObject" à true
             colChambreDoor.enabled = !colChambreDoor.enabled;
             //colChambreDoor.isTrigger = false;
@@ -101,7 +103,8 @@ public class InteractObject : MonoBehaviour
         if (myType.typeOfObject == EnumObject.SeauDeau)
         {
             FindObjectOfType<SoundManager>().Play("WaterDrop");
-            tvSound.Stop();
+            tv.Stop();
+            gaz.Play();
             animCuisine.SetBool("Seaujeté", true); // Modifie la valeur la valeur de la variable "Seaujeté" de l'animator à true
             stopSalon.StopTimer();
             colTV.enabled = !colTV.enabled;
@@ -110,7 +113,6 @@ public class InteractObject : MonoBehaviour
         }
         else if (myType.typeOfObject == EnumObject.Telecommande)
         {
-            tvSound.volume = 10f;
             StartCoroutine(Time());
         }
         else if (myType.typeOfObject == EnumObject.Xylophone)
@@ -149,6 +151,7 @@ public class InteractObject : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().Play("Squeak");
             animSalon.SetBool("OuvreSalon", true);
+            tv.Play();
             voiture.Stop();
             stopGarage.StopTimer();
             colSalonDoor.isTrigger = true;

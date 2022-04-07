@@ -15,6 +15,7 @@ TagManager:
   - Echelle
   - Gaziniere
   - Voiture
+  - TV
   layers:
   - Default
   - TransparentFX
