@@ -13,6 +13,8 @@ TagManager:
   - Marteau
   - Xylo
   - Echelle
+  - Gaziniere
+  - Voiture
   layers:
   - Default
   - TransparentFX
