@@ -29,13 +29,17 @@ public class InteractObject : MonoBehaviour
 
     [SerializeField]
     AudioSource tvSound;
-    AudioSource carMusic;
+    AudioSource gaz;
+    AudioSource voiture;
 
     private void Start()
     {
         tvSound = GetComponent<AudioSource>();
         tvSound.volume = 1f;
-        carMusic = GetComponent<AudioSource>();
+        gaz = GameObject.FindGameObjectWithTag("Gaziniere").GetComponent<AudioSource>();
+        GetComponent<AudioSource>().clip = gaz.clip;
+        voiture = GameObject.FindGameObjectWithTag("Voiture").GetComponent<AudioSource>();
+        GetComponent<AudioSource>().clip = voiture.clip;
     }
 
     public IEnumerator Time()
@@ -48,14 +52,6 @@ public class InteractObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         FindObjectOfType<SoundManager>().Play("Nice");
-    }
-
-    private void OnTriggerEnter(Collider col)
-    {
-        if(gameObject.tag == "Player")
-        {
-            carMusic.Play();
-        }
     }
 
 
@@ -153,6 +149,7 @@ public class InteractObject : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().Play("Squeak");
             animSalon.SetBool("OuvreSalon", true);
+            voiture.Stop();
             stopGarage.StopTimer();
             colSalonDoor.isTrigger = true;
             colVoiture.enabled = !colVoiture.enabled;
@@ -169,6 +166,7 @@ public class InteractObject : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().Play("Hammer");
             animSDB.SetBool("OuvSDB", true);
+            gaz.Stop();
             stopCuisine.StopTimer();
             colSDBDoor.isTrigger = true;
             colGaziniere.enabled = !colGaziniere.enabled;
